@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
     private ApiInfo commonInfo() {
         return new ApiInfoBuilder()
-                .title("FarmComeUs API")
+                .title("Board API")
                 //.description("")
                 //.license("leeys")
                 //.licenseUrl("http://leeys.tistory.com")
@@ -30,11 +30,9 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(false)
                 .select()
                 //.apis(RequestHandlerSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("com.ssafy.board.farmcu"))
+                .apis(RequestHandlerSelectors.basePackage("com.ssafy.board.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(commonInfo());
     }
-
-
 }

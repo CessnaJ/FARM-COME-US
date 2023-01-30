@@ -14,7 +14,7 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
-    private Long memberId;
+    private Long member_id;
 
     @Column(length = 20)
     private String id;
@@ -42,8 +42,8 @@ public class Member {
     @Column(length = 15)
     private String phoneNumber;
 
-    @Column(name = "refresh_token", length = 255)
-    private String refreshToken;
+    @Column(name = "access_token", length = 255)
+    private String accessToken;
 
 
     // 인증
@@ -61,8 +61,8 @@ public class Member {
     private Timestamp createdAt;
 
     @Builder
-    public Member(Long memberId, String id, String password, String nickname, String name, String email, String profileImg, String streetAddr, String detailAddr, String zipcode, String phoneNumber, String refreshToken, String role, String provider, String providerId, Timestamp createdAt) {
-        this.memberId = memberId;
+    public Member(Long member_id, String id, String password, String nickname, String name, String email, String profileImg, String streetAddr, String detailAddr, String zipcode, String phoneNumber, String accessToken, String role, String provider, String providerId, Timestamp createdAt) {
+        this.member_id = member_id;
         this.id = id;
         this.password = password;
         this.nickname = nickname;
@@ -73,23 +73,10 @@ public class Member {
         this.detailAddr = detailAddr;
         this.zipcode = zipcode;
         this.phoneNumber = phoneNumber;
-        this.refreshToken = refreshToken;
+        this.accessToken = accessToken;
         this.role = role;
         this.provider = provider;
         this.providerId = providerId;
         this.createdAt = createdAt;
-    }
-
-    public Member(Member o){
-        this.id = o.id;
-        this.password = o.password;
-        this.nickname = o.nickname;
-        this.name = o.name;
-        this.nickname = o.nickname;
-        this.email = o.email;
-        this.streetAddr = o.streetAddr;
-        this.detailAddr = o.detailAddr;
-        this.zipcode = o.zipcode;
-        this.phoneNumber = o.phoneNumber;
     }
 }

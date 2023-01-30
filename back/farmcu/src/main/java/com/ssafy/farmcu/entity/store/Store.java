@@ -1,6 +1,5 @@
 package com.ssafy.farmcu.entity.store;
 
-import com.ssafy.farmcu.entity.live.Live;
 import com.ssafy.farmcu.entity.member.Member;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,8 +8,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Getter
@@ -56,20 +53,10 @@ public class Store {
     @CreationTimestamp
     private Timestamp createdAt;
 
-    // 연결
-
-    @OneToOne(mappedBy = "store")
-    private Live live;
 
     @OneToOne
     @JoinColumn(name="member_id")
     private Member member;
-
-    @OneToMany(mappedBy = "store")
-    private List<Item> item = new ArrayList<>();
-
-    @OneToMany(mappedBy = "store")
-    private List<StoreLike> storeLike = new ArrayList<>();
 
     //빌더
     @Builder
