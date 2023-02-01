@@ -64,7 +64,7 @@ public class Item {
 
     //빌더
     @Builder
-    public Item(Long itemID, String itemName, String itemDescription, String itemImg, Integer itemDiscount, Integer itemPrice, Integer itemStock ) {
+    public Item(Long itemId, String itemName, String itemDescription, String itemImg, Integer itemDiscount, Integer itemPrice, Integer itemStock ) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
@@ -74,20 +74,19 @@ public class Item {
         this.itemStock = itemStock;
     }
 
-
-    //**   주문 관련   **//
-    //주문시 재고 차감
+    //**  주문 관련   **//
+    //주문: 재고 차감
     public void removeStock(int quantity){
         int remainStock = this.itemStock - quantity;
 
         if(remainStock < 0) {
-            throw new OutOfStockException("상품의 재고가 부족합니다. \n부족 수량: " + -(remainStock) + ", 현재 재고: " + this.itemStock);
+            throw new OutOfStockException("재고가 부족합니다. \n현재 재고: " + this.itemStock);
         }else {
             this.itemStock = remainStock;
         }
     }
 
-    //주문 취소시 재고 복구
+    //주문 취소: 재고 복구
     public void addStock(int quantity){
         this.itemStock += quantity;
     }
