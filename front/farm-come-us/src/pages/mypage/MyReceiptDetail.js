@@ -130,7 +130,7 @@ const MyReceiptDetail = () => {
           상품 {itemsDatas.length} 개
         </div>
       </div>
-      <div className={classes.receiptsBody}>
+      <div className={`${classes.receiptsBody} ${classes.flexboxbelow}`}>
         {itemsCards}
         여기 아이템 카드들 나와야하는데
         <div className={classes.totalPrice}>
@@ -138,7 +138,7 @@ const MyReceiptDetail = () => {
             전체 결제 금액: {convertedPrice}원
           </div>
         </div>
-        <div>
+        <div className={`${classes.flexboxbelow} ${classes.jtfycenter}`}>
           <Button>환불 / 결제취소</Button>
         </div>
       </div>

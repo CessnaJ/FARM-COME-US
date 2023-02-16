@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import axios from "axios";
 // import { KakaoPayment } from '../components/kakaopay/KakaoPay.js'
 import classes from "./style/KakaopayEvent.module.scss";
 
 const KakaopayEvent = (props) => {
+  const navigate = useNavigate();
   const kakaoClick = async () => {
     try {
       // .get("http://localhost:9090/api/api/v1/pay/kakaoreq", {
@@ -16,7 +19,9 @@ const KakaopayEvent = (props) => {
           },
         })
         .then((response) => {
-          console.log("여기 아래에 redirect랑 tid정보 들어옴.");
+          console.log(
+            "여기 아래에 redirect랑 tid정보 들어옴. 결제가 다 완료되고 오는지?"
+          );
           console.log(response);
           const setUrl = response.data.next_redirect_pc_url;
           const tid = response.data.tid;
@@ -26,6 +31,7 @@ const KakaopayEvent = (props) => {
 
           console.log(setUrl);
           console.log(tid);
+
           try {
             console.log("tid 주기");
             axios.put(
@@ -42,10 +48,14 @@ const KakaopayEvent = (props) => {
             console.log("안됨");
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log("여기서에러");
+          console.log(error);
+        });
     } catch (err) {
       console.err(err);
     }
+    return;
   };
   return (
     <div className={classes.buttonspace} onClick={kakaoClick}>

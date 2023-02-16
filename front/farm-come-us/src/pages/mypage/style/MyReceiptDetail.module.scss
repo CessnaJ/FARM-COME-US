@@ -94,3 +94,15 @@ $upperCardHeight: 20%;
   color: #777;
   // align-self: self-end;
 }
+
+.jtfycenter {
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.flexboxbelow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

@@ -39,6 +39,8 @@ const MyReceiptItem = (props) => {
   //// 😀 백엔드 확인. 왜 오류 나는지.
   useEffect(() => {
     // ProductDetail(props.info.orderItems[0].oitemId);
+    console.log(props.info.orderItems[0].oitemId);
+    console.log("로 요청을 보냅니다.");
     axios
       .get(`${process.env.REACT_APP_API_SERVER_URL}/api/v1/item`, {
         params: {
