@@ -25,7 +25,7 @@ const KakaoPayResult = (props) => {
       })
       .then((response) => {
         console.log(response);
-        if ((response.status === 100) | 200) {
+        if (response.status === 100 || response.status === 200) {
           alert("결제가 완료되었습니다.");
           // navigate("/");
           setTimeout(navigate("/"), 3000);
