@@ -91,14 +91,15 @@ const MyReceiptDetail = () => {
   // const dateFormatted = dateFormatter(date);
 
   let itemsCards = itemsDatas.map((item, idx) => {
-    // console.log(item);
-    <MyReceiptDetailItem
-      key={idx}
-      itemId={item.oitemId}
-      count={item.oitemCount}
-      storeNum={item.storeNum}
-      itemPrice={item.oitemPrice}
-    />;
+    return (
+      <MyReceiptDetailItem
+        key={idx}
+        itemId={item.oitemId}
+        count={item.oitemCount}
+        storeNum={item.storeNum}
+        itemPrice={item.oitemPrice}
+      />
+    );
     // itemId를 이용해서 axios 요청을 보내면(아이템에 대한 상세정보) - 거기에 savedPath라는 이름으로 이미지 주소가 주어집니다.(그걸로 이미지 카드를 채움.)
   });
 
@@ -132,14 +133,14 @@ const MyReceiptDetail = () => {
       </div>
       <div className={`${classes.receiptsBody} ${classes.flexboxbelow}`}>
         {itemsCards}
-        여기 아이템 카드들 나와야하는데
+
         <div className={classes.totalPrice}>
           <div className={classes.totalPrice}>
             전체 결제 금액: {convertedPrice}원
           </div>
         </div>
         <div className={`${classes.flexboxbelow} ${classes.jtfycenter}`}>
-          <Button>환불 / 결제취소</Button>
+          <Button className={classes.button}>환불 / 결제취소</Button>
         </div>
       </div>
     </div>

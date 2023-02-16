@@ -5,6 +5,8 @@ import ProductDetail from "../../pages/product/ProductDetail";
 import classes from "./style/MyReceiptItem.module.scss";
 
 const MyReceiptItem = (props) => {
+  console.log("프랍찍어본다.");
+  console.log(props);
   console.log(props.info);
   const navigate = useNavigate();
   const [itemName, setItemName] = useState("");
@@ -38,21 +40,23 @@ const MyReceiptItem = (props) => {
 
   //// 😀 백엔드 확인. 왜 오류 나는지.
   useEffect(() => {
-    // ProductDetail(props.info.orderItems[0].oitemId);
-    console.log(props.info.orderItems[0].oitemId);
-    console.log("로 요청을 보냅니다.");
-    axios
-      .get(`${process.env.REACT_APP_API_SERVER_URL}/api/v1/item`, {
-        params: {
-          itemId: props.info.orderItems[0].oitemId,
-        },
-      })
-      .then((res) => {
-        console.log("정상응답");
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-    // axios.get();
+    if (props.info.orderItems !== []) {
+      ProductDetail(props.info.orderItems[0].oitemId);
+      console.log(props.info.orderItems[0].oitemId);
+      console.log("로 요청을 보냅니다.");
+      axios
+        .get(`${process.env.REACT_APP_API_SERVER_URL}/api/v1/item`, {
+          params: {
+            itemId: props.info.orderItems[0].oitemId,
+          },
+        })
+        .then((res) => {
+          console.log("정상응답");
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+      // axios.get();
+    }
   }, []);
 
   // item1 = { id:orderId, items:[강원도배추, 제즈스윗당근],
