@@ -15,8 +15,11 @@ const KakaopayEvent = (props) => {
           },
         })
         .then((response) => {
+          console.log("여기 아래에 redirect랑 tid정보 들어옴.");
+          console.log(response);
           const setUrl = response.data.next_redirect_pc_url;
           const tid = response.data.tid;
+          console.log("여기까지");
 
           console.log(setUrl);
           console.log(tid);
