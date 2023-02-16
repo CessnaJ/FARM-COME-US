@@ -20,6 +20,8 @@ const KakaopayEvent = (props) => {
           const setUrl = response.data.next_redirect_pc_url;
           const tid = response.data.tid;
           console.log("여기까지");
+          sessionStorage.setItem("tid", tid);
+          sessionStorage.setItem("orderId", props.orderId);
 
           console.log(setUrl);
           console.log(tid);

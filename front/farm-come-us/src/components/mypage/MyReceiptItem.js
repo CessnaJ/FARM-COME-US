@@ -11,7 +11,7 @@ const MyReceiptItem = (props) => {
 
   let item = {
     id: "1084165156",
-    items: ["강원도 고랭지 배추", "제주 스윗 당근", "충주 호박고구마"],
+    items: ["강원도 고랭지 배추", "제주 스윗 당근"],
     cost: 429000,
     ordertime: "2023.01.10 21:12:58",
   };

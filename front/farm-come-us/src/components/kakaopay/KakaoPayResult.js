@@ -15,26 +15,20 @@ const KakaoPayResult = (props) => {
     withCredentials: true,
   };
   const pgToken = new URL(window.location.href).searchParams.get("pg_token");
-  const tid = localStorage.getItem("tid");
+  // const tid = sessionStorage.getItem("tid");
+  // const partner_order_id = sessionStorage.getItem("orderId");
+
   const postCompleted = useEffect(() => {
     axios
-      .post(
-        "/credit/KakaoPay/completed",
-        JSON.stringify({
-          cid: "TC0ONETIME",
-          partner_order_id: user.username, //암호화 백엔드에서
-          partner_user_id: user.username, // 암호화 백엔드에서
-          pg_token: pgToken,
-          tid: tid,
-        }),
-        config
-      )
+      .get(process.env.REACT_APP_API_SERVER_URL + "/api/v1/pay/kakao/success", {
+        params: { pg_token: pgToken },
+      })
       .then((response) => {
         console.log(response);
-        if (response.status === 200) {
+        if ((response.status === 100) | 200) {
           alert("결제가 완료되었습니다.");
           // navigate("/");
-          setTimeout(navigate(`receipt/${tid}`), 3000);
+          setTimeout(navigate("/"), 3000);
         }
       })
       .catch((error) => {
@@ -45,7 +39,7 @@ const KakaoPayResult = (props) => {
 
   return (
     <div className={classes.screen}>
-      결제가 완료되었습니다. 영수증 페이지로 이동합니다.
+      결제가 완료 후, 메인 페이지로 이동합니다.
     </div>
   );
 };
