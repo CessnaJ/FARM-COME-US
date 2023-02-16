@@ -9,7 +9,20 @@ const KakaoPayment = (props) => {
   const pgToken = urlParams.get("pg_token");
   console.log(pgToken);
 
-  axios.return(
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_API_SERVER_URL + "/api/v1/payment/success", {
+        params: { pg_token: pgToken },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  return (
     <div className={classes.screen}>
       <div>결제 상세</div>
       <div>카카오페이 결제 중입니다.</div>
