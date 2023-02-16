@@ -25,8 +25,6 @@ export async function createProduct(productInfo) {
     })
   );
 
-  console.log(data);
-
   const config = {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -36,23 +34,16 @@ export async function createProduct(productInfo) {
     },
   };
 
-  try {
-    const response = axios.post(
-      `${process.env.REACT_APP_API_SERVER_URL}/api/v1/item`,
-      formData,
-      config
-    );
-
-    console.log(response);
-  } catch (err) {
-    console.err(err);
-  }
+  return axios.post(
+    `${process.env.REACT_APP_API_SERVER_URL}/api/v1/item`,
+    formData,
+    config
+  );
 }
 
 /* 상품 상세 조회 */
 export async function productDetail(productId) {
   try {
-    console.log("아이템 불러오는 함수 실행");
     const response = await axios({
       method: "get",
       url: `${process.env.REACT_APP_API_SERVER_URL}/api/v1/item`,
@@ -61,7 +52,6 @@ export async function productDetail(productId) {
       },
     });
     const data = response.data;
-    console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -126,7 +116,6 @@ export async function deleteProduct(productId) {
         itemId: productId,
       },
     });
-    console.log(response.success);
   } catch (err) {
     console.err(err);
   }

@@ -98,17 +98,15 @@ public class ItemController {
     @PostMapping("/keyword")
     @ApiOperation(value = "상품 목록 조회")
     public ResponseEntity<HashMap<String, Object>> selectItemList(@RequestBody ItemSearchReq itemSearchReq, Integer page, Integer size) {
-        log.info("ItemSearchReq DTO: {}", itemSearchReq);
         PageRequest pageRequest = PageRequest.of(page, size);
         HashMap<String, Object> itemText = itemService.findItemsByCategoryAndItemNameLike(itemSearchReq, pageRequest);
         List<ItemDto> itemList = (List<ItemDto>) itemText.get("itemList");
         Boolean hasNextPage = (Boolean) itemText.get("hasNextPage");
 
-        //상품 대표 이미지
-        List<String> itemImages = new ArrayList<>();
         List<ItemDto> itemInfoList = new ArrayList<>();
 
         for(ItemDto itemDto : itemList) {
+            List<String> itemImages = new ArrayList<>(); //상품 이미지
             ItemImageDto itemImageDto = itemImageService.findItemImageByItemId(itemDto.getItemId());
             if(itemImageDto != null) {
                 itemImages.add(itemImageDto.getSavedPath());
@@ -132,11 +130,10 @@ public class ItemController {
         List<ItemDto> itemList = (List<ItemDto>) itemText.get("itemList");
         Boolean hasNextPage = (Boolean) itemText.get("hasNextPage");
 
-        //상품 대표 이미지
-        List<String> itemImages = new ArrayList<>();
         List<ItemDto> itemInfoList = new ArrayList<>();
 
         for(ItemDto itemDto : itemList) {
+            List<String> itemImages = new ArrayList<>(); //상품 이미지
             ItemImageDto itemImageDto = itemImageService.findItemImageByItemId(itemDto.getItemId());
             if(itemImageDto != null) {
                 itemImages.add(itemImageDto.getSavedPath());
