@@ -6,6 +6,7 @@ import classes from "./style/KakaopayEvent.module.scss";
 const KakaopayEvent = (props) => {
   const kakaoClick = async () => {
     try {
+      // .get("http://localhost:9090/api/api/v1/pay/kakaoreq", {
       axios
         .get(process.env.REACT_APP_API_SERVER_URL + "/api/v1/pay/kakaoreq", {
           params: {
