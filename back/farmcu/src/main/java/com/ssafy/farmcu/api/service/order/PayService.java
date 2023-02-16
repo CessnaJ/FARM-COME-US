@@ -101,6 +101,7 @@ public class PayService {
         parameters.add("tax_free_amount", "0");
         parameters.add("cid", "TC0ONETIME");
         parameters.add("approval_url", "http://localhost:9090/api/v1/pay/kakao/success");
+//        parameters.add("approval_url", "http://localhost:3000/payment-result");
         parameters.add("cancel_url", "https://localhost:9090");
         parameters.add("fail_url", "https://localhost:9090");
 
