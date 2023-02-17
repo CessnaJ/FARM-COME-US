@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Button from "../common/Button";
 import classes from "./KakaoPayment.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const KakaoPayment = (props) => {
+  navigate = useNavigate();
   const urlParams = new URLSearchParams(window.location.search);
   const pgToken = urlParams.get("pg_token");
   console.log(pgToken);

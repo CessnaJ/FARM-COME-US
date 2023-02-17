@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-
 import axios from "axios";
-// import { KakaoPayment } from '../components/kakaopay/KakaoPay.js'
 import classes from "./style/KakaopayEvent.module.scss";
 
 const KakaopayEvent = (props) => {
   const navigate = useNavigate();
   const kakaoClick = async () => {
     try {
-      // .get("http://localhost:9090/api/api/v1/pay/kakaoreq", {
       axios
         .get(process.env.REACT_APP_API_SERVER_URL + "/api/v1/pay/kakaoreq", {
           params: {
@@ -20,7 +17,7 @@ const KakaopayEvent = (props) => {
         })
         .then((response) => {
           console.log(
-            "여기 아래에 redirect랑 tid정보 들어옴. 결제가 다 완료되고 오는지?"
+            "여기 아래에 redirect랑 tid정보 들어옵니다. 결제가 다 완료되고 오는지?"
           );
           console.log(response);
           const setUrl = response.data.next_redirect_pc_url;
@@ -43,6 +40,7 @@ const KakaopayEvent = (props) => {
           }
 
           if (setUrl) {
+            // window.location.href = setUrl;
             window.open(setUrl);
           } else {
             console.log("안됨");
